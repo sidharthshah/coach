@@ -39,4 +39,21 @@ class Problem(models.Model):
 	def __unicode__(self):
 		return self.name
 
+class TrainingSession(models.Model):
+	session_name = models.CharField(max_length=255)
+	tutorial = models.ForeignKey(Tutorial)
+	problem_1 = models.ForeignKey(Problem, related_name='Problem 1')
+	problem_2 = models.ForeignKey(Problem, blank=True, null=True, related_name='Problem 2')
+	problem_3 = models.ForeignKey(Problem, blank=True, null=True, related_name='Problem 3')
+	completed = models.BooleanField(default=False)
+	completed_on = models.DateField(blank=True, null=True)
+	comments = models.TextField(blank=True, null=True)
+
+	def __unicode__(self):
+		return self.session_name
+
+
+
+
+
 
